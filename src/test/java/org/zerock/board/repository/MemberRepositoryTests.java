@@ -1,0 +1,34 @@
+package org.zerock.board.repository;
+
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.zerock.board.entity.Member;
+
+import java.util.stream.IntStream;
+
+@SpringBootTest
+public class MemberRepositoryTests {
+
+    @Autowired
+    private MemberRepository memberRepository;
+
+    @Test
+    public void insertMember(){
+
+        IntStream.rangeClosed(1,3).forEach(i ->{
+
+            Member member = Member.builder()
+                    .email("user"+i+"@aaaa.com")
+                    .password("1111")
+                    .name("USER"+i)
+                    .build();
+
+            memberRepository.save(member);
+        });
+
+    }
+
+
+}
